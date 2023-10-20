@@ -1,5 +1,6 @@
 body {
     background-color: #1e1f26;
+    min-width: 630px;
 }
 
 
@@ -8,14 +9,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: auto;
+    height: 88vh;
 }
 
 H1 {
     font-family: 'Archivo Black', sans-serif;
     color: #e6005c;
-    font-size: 7vw;
+    font-size: clamp(20px, 7vh, 200px);
+    text-align: center;
 }
 
 .game {
@@ -28,6 +29,8 @@ H1 {
     border-radius: 10px;
     padding: 50px 10px;
     text-align: center;
+    max-height: 400px;
+    max-width: 1000px;
 }
 
 .button-section {
@@ -46,15 +49,16 @@ img{
 
 h2 {
     color: rgb(255, 255, 255);
-    font-family: 'Delicious Handrawn', cursive;
-    font-size: 5vw;
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(36px, 5vw, 70px);
     margin: 0px;
 }
 
 h3 {
     color: aqua;
-    font-size: 2.5vw;
+    font-size: clamp(32px, 4vw, 60px);
     margin: 10px;
+    font-family: 'Pixelify Sans', sans-serif;
 }
 
 .button {

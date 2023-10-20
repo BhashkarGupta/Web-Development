@@ -1,0 +1,84 @@
+body {
+    background-color: #1e1f26;
+    color: #005ce6;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    margin: 20px 0;
+}
+
+.instruments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.instrument {
+    display: flex;
+    height: 150px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #e6005c;
+    box-shadow: 0 0 25px rgba(230, 0, 92, 0.64);
+    border-radius: 10px;
+    background-color: white;
+}
+
+h1 {
+    color: #e6005c;
+    font-size: 100px;
+    text-shadow: 3px 0 #005ce660;
+}
+
+h2 {
+    color: #005ce6;
+    font-size: 5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 0 #e6005c65;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.footer {
+    margin: 50px 0;
+}
+
+#instrument1 {
+    background-image: url("./images/tom1.png");
+}
+
+#instrument2 {
+    background-image: url("./images/tom2.png");
+}
+
+#instrument3 {
+    background-image: url("./images/tom3.png");
+}
+
+#instrument4 {
+    background-image: url("./images/tom4.png");
+}
+
+#instrument5 {
+    background-image: url("./images/snare.png");
+}
+
+#instrument6 {
+    background-image: url("./images/crash.png");
+}
+
+#instrument7 {
+    background-image: url("./images/kick.png");
+}

@@ -16,20 +16,20 @@
   </form>
   <div id="recipeContainer" class="hidden">
 
-    <!-- If no recipe yet, show: -->
-    <h2>Pick your favourite taco ingredient 👆</h2>
-    <!-- Else, show the recipe name e.g. <h2>Recipe name</h2>-->
-
-    <h3>Ingredients:</h3>
-    <ul id="ingredientsList">
-      <li>Protein name, protein preparation</li>
-      <li>Salsa name</li>
-      <li>Every other topping</li>
-    </ul>
-
-
-
+    <% if (locals.data){%>
+      <h2><%= data.name %></h2>
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li><%= data.ingredients.protein.name %>, <%= data.ingredients.protein.preparation %></li>
+        <li><%= data.ingredients.salsa.name %></li>
+        <li><%= data.ingredients.toppings[0].quantity %> of <%= data.ingredients.toppings[0].name %></li>
+        <li><%= data.ingredients.toppings[1].quantity %> of <%= data.ingredients.toppings[1].name %></li>
+        <li><%= data.ingredients.toppings[2].quantity %> of <%= data.ingredients.toppings[2].name %></li>
+      </ul>
+      <%}else{%>
+        <h2>Pick your favourite taco ingredient 👆</h2>
+      <%} %>
   </div>
 </body>
 
-</html>
+</html> 

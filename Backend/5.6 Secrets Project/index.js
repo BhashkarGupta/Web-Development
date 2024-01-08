@@ -11,3 +11,24 @@
 // secret and the username of the secret.
 
 // 6. Listen on your predefined port and start the server.
+import express from "express";
+import axios from "axios";
+
+const port = 2100;
+const server = express();
+const apiURL = "https://secrets-api.appbrewery.com/random";
+
+server.use(express.static("public"));
+
+server.get("/", async (req, res) => {
+    const request = await axios.get(apiURL);
+    res.render("index.ejs", {
+        secret: request.data.secret,
+        user: request.data.username,
+    });
+});
+
+server.listen(port, () => {
+    console.log(`server listening on port ${port}`);
+});
+

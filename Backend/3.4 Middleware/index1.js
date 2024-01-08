@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true})); // to get the information which is coming from the form 
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

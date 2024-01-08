@@ -1,32 +1,36 @@
-import express from "express";
-import morgan from "morgan";
-import fs from "fs";
-import bodyParser from "body-parser";
+import express from "express";// for http method
+import morgan from "morgan";// for logging
+import fs from "fs"; // for mamanging file on the local directory
+import bodyParser from "body-parser";// to get body of the request
 import { dirname } from "path";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));//to get root directory path
 const app = express();
 const port = 3000;
 
+//Custom middleware to console log request method and request url
 function logger(req, res, next) {
   console.log(`Request Method: ${req.method} Request URL: ${req.url}`);
-  next();
+  next();// to move to next middleware or http method
 }
 
+//Function to create brand name from the user input
 function brandName(fString, Sstrint){
   var name = "<h2>" + fString[0].toUpperCase() + fString.slice(1) + Sstrint[0].toUpperCase() + Sstrint.slice(1) + "</h2>";
   return name;
 }
 
+// morgan middleware for logging to access.log file
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(logger);
+
+app.use(bodyParser.urlencoded({extended: false}));//to get request body
+app.use(logger);// custom middleware function for logging
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index.html");//sending html file from the public folder
 });
 
 app.post("/submit", (req, res) => {

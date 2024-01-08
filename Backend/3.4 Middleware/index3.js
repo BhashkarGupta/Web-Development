@@ -3,9 +3,10 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+// Custom Middleware to log the request method and request url
 function logger(req, res, next){
   console.log(`Request Method: ${req.method} Request URL: ${req.url}`);
-  next();
+  next(); // to go to the next middleware or http request
 }
 
 app.use(logger);

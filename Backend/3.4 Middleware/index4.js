@@ -7,6 +7,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));//to get root directory path
+// import.meta.url - give the url of the current node file
+// fileURLToPath(import.meta.url) - convert the file url to file path
+// dirname(fileURLToPath(import.meta.url)) - provides the current working directory from the file path
 const app = express();
 const port = 3000;
 

@@ -63,8 +63,9 @@ app.get("/posts/:id", (req, res) =>{
 //CHALLENGE 3: POST a new post
 app.post("/posts", (req, res) =>{
   const currentDate = new Date();
+  const newId = posts[posts.length - 1].id + 1;
   let post = {
-    id: posts.length + 1,
+    id: newId,
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,

@@ -32,23 +32,76 @@ let posts = [
   },
 ];
 
-let lastId = 3;
-
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Write your code here//
 
+function findPostIndex(postId){
+  let selectedPostIndex = -1;
+  for(let i = 0; i < posts.length; i++){
+    if(postId === posts[i].id){
+      selectedPostIndex = i;
+      break;
+    }
+  }
+  return selectedPostIndex;
+}
+
 //CHALLENGE 1: GET All posts
+app.get("/posts", (req, res) =>{
+  res.json(posts);
+});
 
 //CHALLENGE 2: GET a specific post by id
+app.get("/posts/:id", (req, res) =>{
+  const selectedPost = findPostIndex(parseInt(req.params.id));
+  res.json(posts[selectedPost]);
+});
 
 //CHALLENGE 3: POST a new post
+app.post("/posts", (req, res) =>{
+  const currentDate = new Date();
+  let post = {
+    id: posts.length + 1,
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author,
+    date: currentDate,
+  };
+  posts.push(post);
+  res.sendStatus(200);
+});
 
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
+app.patch("/posts/:id", (req, res)=>{
+  const selectedPostIndex = findPostIndex(parseInt(req.params.id));
+  if(selectedPostIndex === -1){
+    res.status(500).json({
+      error: `no post with ${req.params.id} found`,
+    });
+  }else{
+    posts[selectedPostIndex].title = req.body.title;
+    posts[selectedPostIndex].author = req.body.author;
+    posts[selectedPostIndex].content = req.body.content;
+    posts[selectedPostIndex].date = new Date();
+    res.sendStatus(200);
+  }
+});
 
 //CHALLENGE 5: DELETE a specific post by providing the post id.
+app.delete("/posts/:id", (req, res)=>{
+  const selectedPostIndex = findPostIndex(parseInt(req.params.id));
+  if(selectedPostIndex === -1){
+    res.status(500).json({
+      error: `no post with ${req.params.id} found`,
+    });
+  }else{
+    posts.splice(selectedPostIndex, 1);
+    res.sendStatus(200);
+  }
+});
 
 app.listen(port, () => {
   console.log(`API is running at http://localhost:${port}`);
